@@ -34,3 +34,6 @@ config/app.production.config.js
 */js/dist
 */css/dist
 *.tmp
+
+# update packages
+/updates/*.zip
