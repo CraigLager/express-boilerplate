@@ -3,7 +3,7 @@
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="css/style.css"/>
     @bundles.css.forEach(function(b){
-      <link rel="stylesheet" type="text/css" src="@b" />
+      <link rel="stylesheet" type="text/css" href="@b" />
     })
   </head>
   <body>
