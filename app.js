@@ -13,12 +13,6 @@ __dev = app.get('env') === 'development'
 // set config up
 config = require('./config/app.' + (__dev ? "dev" : "production") + '.config');
 
-// database init
-if(config.databaseInit)
-{
-  db = require('./db.js')
-  db.init();
-}
 
 // compress all requests
 if(config.compression)
@@ -102,6 +96,13 @@ var files = glob.sync("./controllers/*.js", {});
 
 return controllers;
 
+}
+
+// database init
+if(config.databaseInit)
+{
+  db = require('./db.js')
+  db.init();
 }
 
 process.on( 'SIGINT', function() {

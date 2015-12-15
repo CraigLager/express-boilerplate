@@ -16,6 +16,45 @@ exports.set = function(key, value)
   dbClient.set(key, JSON.stringify(value));
 }
 
+// push a value on to the start of a list
+exports.leftPush = function(key,value)
+{
+  if(config.verbose){
+    console.log("pushing to the left of " + key);
+  }
+
+  dbClient.lpush(key, value);
+}
+
+// push a value on to the end of a list
+exports.rightPush = function(key,value)
+{
+  if(config.verbose){
+    console.log("pushing to the left of " + key);
+  }
+
+  dbClient.lpush(key, value);
+}
+
+// get a list
+exports.listRange = function(key,start,end,callback)
+{
+  if(config.verbose){
+    console.log("getting " + key + " range " + start + ":" + end);
+  }
+
+  dbClient.lrange(key,start,end,function(err,reply){callback(reply)});
+}
+
+// gets an entire list
+exports.list = function(key,callback){
+  if(config.verbose){
+    console.log("getting " + key + " entire range ");
+  }
+
+  dbClient.lrange(key,0,-1,function(err,reply){callback(reply)});
+}
+
 // get a value from a key
 // callback should accept 1 argument
 exports.get = function(key,callback)

@@ -3,14 +3,20 @@ var router = express.Router();
 
 /* GET /tests/ */
 router.get('/', function(req, res) {
-  db.keys("*", function(model){
-    res.render('tests/index',model);
+  db.keys("*", function(keysModel){
+    db.listRange('testList',0,2,function(listModel){
+      var model = {keys:keysModel.keys, list:listModel};
+      console.log(model);
+      res.render('tests/index',model);
+    })
   })
 });
 
 /* POST /tests/ */
 router.post('/', function(req,res){
-  db.set(db.newId(), {created : new Date().getTime()});
+  var id = db.newId();
+  db.set(id, {created : new Date().getTime()});
+  db.leftPush("testList",id)
   res.send("ok");
 });
 

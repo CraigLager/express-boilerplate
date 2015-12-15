@@ -3,8 +3,22 @@
   <form method="POST" data-ajax="true" data-ajax-url="/tests">
     <input type="submit" value="New Random" />
   </form>
+  <h2>Key Search</h2>
   <ul>
   @model.keys.forEach(function(key){
+  <li>
+  <a href="/tests/@key">@key</a>
+  <form method="POST" data-ajax="true" data-ajax-url="/tests/delete">
+    <input type="hidden" name="key" value="@key" />
+    <input type="submit" value="Delete" />
+  </form>
+  </li>
+  })
+  </ul>
+
+  <h2>List Search</h2>
+  <ul>
+  @model.list.forEach(function(key){
   <li>
   <a href="/tests/@key">@key</a>
   <form method="POST" data-ajax="true" data-ajax-url="/tests/delete">
