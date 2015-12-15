@@ -6,7 +6,7 @@ A simple MVC structure sat on top of [express](http://expressjs.com/), with comm
 
 * [Download](https://github.com/CraigLager/express-boilerplate/archive/master.zip) and extract the zip
 * Run `npm install`
-* Configure /config/app.dev.config.js and /config/production.config.js
+* Configure /config/app.dev.config.js and /config/app.production.config.js
     * *You can just copy app.example.config and rename the files to achieve this. Anyone familiar with wordpress should be familiar with this sort of configuration.*
     * *These files are in the .gitignore to stop the accidental uploading of passwords to public git repos. If you're publishing through something like heroku which gets its files from git, you'll need a private repo or your settings put into environment variables.*
 * `npm start` to start the webserver
