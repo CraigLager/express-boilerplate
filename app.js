@@ -102,6 +102,7 @@ return controllers;
 if(config.databaseInit)
 {
   db = require('./db.js')
+  itemRepo = require('./itemRepo.js')
   db.init();
 }
 
