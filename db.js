@@ -13,7 +13,7 @@ exports.set = function(key, value)
     console.log("setting " + key);
   }
 
-  dbClient.set(key, JSON.stringify(value));
+  dbClient.set(key, JSON.stringify(value),function(err){console.log(err)});
 }
 
 // push a value on to the start of a list
@@ -46,6 +46,15 @@ exports.listRange = function(key,start,end,callback)
   dbClient.lrange(key,start,end,function(err,reply){callback(reply)});
 }
 
+exports.listRemove = function(list,key)
+{
+  if(config.verbose){
+    console.log("deleting " + key + " from " + list);
+  }
+
+  dbClient.lrem(list,0,key);
+}
+
 // gets an entire list
 exports.list = function(key,callback){
   if(config.verbose){
@@ -53,6 +62,14 @@ exports.list = function(key,callback){
   }
 
   dbClient.lrange(key,0,-1,function(err,reply){callback(reply)});
+}
+
+exports.increment = function(key,callback){
+  if(config.verbose){
+    console.log("incrementing " + key);
+  }
+
+  dbClient.incr(key ,function(err,reply){callback(reply)});
 }
 
 // get a value from a key
@@ -64,7 +81,7 @@ exports.get = function(key,callback)
   }
 
   dbClient.get(key, function(err, reply){
-    callback(JSON.parse(reply));
+    callback(reply);
   })
 }
 
